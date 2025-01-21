@@ -28,11 +28,11 @@ const Summary = () => {
   ];
 
   const userFlowSteps = [
-    "Landing on the product page for "Pokémon Super Electric Breaker Booster Box SV8 (JP)"",
-    "Viewing product images",
-    "Reading product description",
-    "Checking price and payment options",
-    "Adding the product to the cart",
+    'Landing on the product page for "Pokémon Super Electric Breaker Booster Box SV8 (JP)"',
+    'Viewing product images',
+    'Reading product description',
+    'Checking price and payment options',
+    'Adding the product to the cart',
     'Viewing "You may also like" section',
   ];
 
