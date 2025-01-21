@@ -2,6 +2,7 @@ import React from 'react';
 import AppIdentification from '@/components/AppIdentification';
 import ContextualInfo from '@/components/ContextualInfo';
 import WorkflowSelection from '@/components/WorkflowSelection';
+import Authentication from '@/components/Authentication';
 
 const Index = () => {
   return (
@@ -29,6 +30,11 @@ const Index = () => {
         <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">3. Select Workflow</h2>
           <WorkflowSelection />
+        </section>
+
+        <section className="space-y-8">
+          <h2 className="text-2xl font-bold text-center">4. Authentication</h2>
+          <Authentication />
         </section>
       </div>
     </div>
