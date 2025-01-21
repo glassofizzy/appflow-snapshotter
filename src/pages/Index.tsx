@@ -42,10 +42,10 @@ const Index = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         <div className="text-center space-y-4">
           <h1 className="text-5xl font-bold">
-            Docs, Assets, Done!
+            Maintain Product Documentation
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Capture Up-to-date Web/App Documentation in Seconds and turn them into Stunning Marketing Assets & Support Docs
+            Generate Stunning Screenshots & Marketing Assets for Your Web and Mobile App Instantly
           </p>
         </div>
 
