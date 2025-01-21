@@ -42,10 +42,10 @@ const Index = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         <div className="text-center space-y-4">
           <h1 className="text-5xl font-bold">
-            App Screenshot Generator
+            Docs, Assets, Done!
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Generate beautiful, contextual screenshots of your app in seconds
+            Capture Up-to-date Web/App Documentation in Seconds and turn them into Stunning Marketing Assets & Support Docs
           </p>
         </div>
 
