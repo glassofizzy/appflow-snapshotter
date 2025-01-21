@@ -3,12 +3,13 @@ import AppIdentification from '@/components/AppIdentification';
 import ContextualInfo from '@/components/ContextualInfo';
 import WorkflowSelection from '@/components/WorkflowSelection';
 import Authentication from '@/components/Authentication';
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Play } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleWalkthrough = async () => {
     try {
@@ -24,6 +25,9 @@ const Index = () => {
         title: "Walkthrough completed",
         description: "Your screenshots have been captured and stored successfully.",
       });
+
+      // Navigate to summary page
+      navigate('/summary');
     } catch (error) {
       toast({
         title: "Error",
