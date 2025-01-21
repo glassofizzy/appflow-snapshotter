@@ -49,8 +49,8 @@ const Summary = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
         <div className="text-center space-y-4">
-          <h1 className="text-5xl font-bold">Summary</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-5xl font-bold animate-fade-in">Summary</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in">
             Review your app screenshots and export them to your preferred platform
           </p>
         </div>
@@ -58,20 +58,20 @@ const Summary = () => {
         <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Selected Options</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="retro-card">
+            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
               <h3 className="text-xl font-bold mb-2">App Details</h3>
               <p className="text-gray-600">App Store ID: 123456789</p>
             </Card>
-            <Card className="retro-card">
+            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
               <h3 className="text-xl font-bold mb-2">Context</h3>
               <p className="text-gray-600">Device: iPhone 14</p>
               <p className="text-gray-600">Language: English</p>
             </Card>
-            <Card className="retro-card">
+            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
               <h3 className="text-xl font-bold mb-2">Workflow</h3>
               <p className="text-gray-600">Sign up for free trial</p>
             </Card>
-            <Card className="retro-card">
+            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
               <h3 className="text-xl font-bold mb-2">Authentication</h3>
               <p className="text-gray-600">Username: ******</p>
             </Card>
@@ -84,17 +84,17 @@ const Summary = () => {
             <Carousel className="w-full max-w-4xl mx-auto">
               <CarouselContent>
                 <CarouselItem>
-                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
                     <p className="text-gray-600">Screen Recording</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
                     <p className="text-gray-600">Screenshot 1</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
                     <p className="text-gray-600">Screenshot 2</p>
                   </div>
                 </CarouselItem>
@@ -110,7 +110,7 @@ const Summary = () => {
               {userFlowSteps.map((step, index) => (
                 <div 
                   key={index}
-                  className="p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:border-accent transition-colors"
+                  className="p-4 bg-white rounded-lg shadow-sm border-2 border-black hover:shadow-[4px_4px_0px_0px_rgba(255,192,0,1)] transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px]"
                 >
                   <p className="text-gray-700">{step}</p>
                 </div>
@@ -128,7 +128,7 @@ const Summary = () => {
             <div className="space-y-2">
               <Label htmlFor="docType">Type of documentation</Label>
               <Select>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="retro-select">
                   <SelectValue placeholder="Select documentation type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -146,7 +146,7 @@ const Summary = () => {
                 id="docUrl" 
                 type="url" 
                 placeholder="Enter URL to documentation"
-                className="w-full"
+                className="retro-input"
               />
             </div>
           </div>
