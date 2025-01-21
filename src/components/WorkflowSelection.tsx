@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 
 const workflows = [
@@ -9,10 +9,25 @@ const workflows = [
 ];
 
 const WorkflowSelection = () => {
+  const [selectedWorkflows, setSelectedWorkflows] = useState<number[]>([]);
+
+  const toggleWorkflow = (id: number) => {
+    setSelectedWorkflows(prev => 
+      prev.includes(id) 
+        ? prev.filter(wId => wId !== id)
+        : [...prev, id]
+    );
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mx-auto">
       {workflows.map((workflow) => (
-        <Card key={workflow.id} className="retro-card cursor-pointer">
+        <Card 
+          key={workflow.id} 
+          className={`retro-card cursor-pointer transition-all duration-200
+            ${selectedWorkflows.includes(workflow.id) ? 'shadow-[4px_4px_0px_0px_#ffc000]' : ''}`}
+          onClick={() => toggleWorkflow(workflow.id)}
+        >
           <h3 className="text-xl font-bold mb-2">{workflow.title}</h3>
           <p className="text-gray-600">{workflow.description}</p>
         </Card>
