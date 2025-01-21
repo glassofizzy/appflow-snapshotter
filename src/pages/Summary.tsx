@@ -142,12 +142,20 @@ const Summary = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="docUrl">Documentation URL</Label>
-              <Input 
-                id="docUrl" 
-                type="url" 
-                placeholder="Enter URL to documentation"
-                className="retro-input"
-              />
+              <div className="flex gap-4">
+                <Input 
+                  id="docUrl" 
+                  type="url" 
+                  placeholder="Enter URL to documentation"
+                  className="retro-input flex-1"
+                />
+                <button
+                  className="retro-button whitespace-nowrap"
+                  onClick={() => console.log('Compare clicked')}
+                >
+                  Compare Now
+                </button>
+              </div>
             </div>
           </div>
         </section>
