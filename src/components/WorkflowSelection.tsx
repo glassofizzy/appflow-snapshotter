@@ -46,6 +46,17 @@ const WorkflowSelection = () => {
           placeholder="Example: 1. User lands on homepage&#10;2. User clicks sign up button&#10;3. User fills registration form&#10;4. User submits form"
           className="min-h-[200px] retro-input"
         />
+        <a 
+          href="#" 
+          onClick={(e) => {
+            e.preventDefault();
+            // AI generation functionality will be implemented here
+            console.log('AI generation requested');
+          }}
+          className="text-sm text-primary hover:underline inline-flex items-center gap-2"
+        >
+          ✨ Let AI generate a detailed task flow for you
+        </a>
       </div>
     </div>
   );
