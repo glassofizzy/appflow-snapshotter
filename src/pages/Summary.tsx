@@ -9,6 +9,15 @@ import {
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const Summary = () => {
   const { toast } = useToast();
@@ -106,6 +115,39 @@ const Summary = () => {
                   <p className="text-gray-700">{step}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-8">
+          <h2 className="text-2xl font-bold text-center">COMPARE WITH</h2>
+          <p className="text-center text-gray-600">
+            Compare your latest documentation with the current implementation to view differences/outdated documentation
+          </p>
+          <div className="max-w-2xl mx-auto space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="docType">Type of documentation</Label>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select documentation type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="product-requirements">Product Requirements</SelectItem>
+                  <SelectItem value="figma-prototype">Figma Prototype</SelectItem>
+                  <SelectItem value="support-page">Support page</SelectItem>
+                  <SelectItem value="user-manual">User Manual</SelectItem>
+                  <SelectItem value="company-onboarding">Company Onboarding</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="docUrl">Documentation URL</Label>
+              <Input 
+                id="docUrl" 
+                type="url" 
+                placeholder="Enter URL to documentation"
+                className="w-full"
+              />
             </div>
           </div>
         </section>
