@@ -27,6 +27,15 @@ const Summary = () => {
     { name: 'Capcut', icon: Copy },
   ];
 
+  const userFlowSteps = [
+    "Landing on the product page for "Pokémon Super Electric Breaker Booster Box SV8 (JP)"",
+    "Viewing product images",
+    "Reading product description",
+    "Checking price and payment options",
+    "Adding the product to the cart",
+    'Viewing "You may also like" section',
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
@@ -84,6 +93,20 @@ const Summary = () => {
               <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 h-24 w-24" />
               <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 h-24 w-24" />
             </Carousel>
+          </div>
+          
+          <div className="max-w-2xl mx-auto mt-8">
+            <h3 className="text-xl font-bold mb-4 text-center">User Flow Steps</h3>
+            <div className="space-y-4">
+              {userFlowSteps.map((step, index) => (
+                <div 
+                  key={index}
+                  className="p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:border-accent transition-colors"
+                >
+                  <p className="text-gray-700">{step}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
