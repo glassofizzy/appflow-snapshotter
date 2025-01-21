@@ -103,21 +103,37 @@ const Summary = () => {
               <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 h-24 w-24" />
             </Carousel>
           </div>
-          
-          <div className="max-w-2xl mx-auto mt-8">
-            <h3 className="text-xl font-bold mb-4 text-center">User Flow Steps</h3>
-            <div className="space-y-4">
-              {userFlowSteps.map((step, index) => (
-                <div 
-                  key={index}
-                  className="p-4 bg-white rounded-lg shadow-sm border-2 border-black hover:shadow-[4px_4px_0px_0px_rgba(255,192,0,1)] transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px]"
-                >
-                  <p className="text-gray-700">{step}</p>
-                </div>
-              ))}
-            </div>
+        </section>
+
+        <section className="space-y-8">
+          <h2 className="text-2xl font-bold text-center">Export Options</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            {exportPlatforms.map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handleCopy(platform.name)}
+                className="retro-button flex items-center justify-center gap-2"
+              >
+                <platform.icon className="w-5 h-5" />
+                {platform.name}
+              </button>
+            ))}
           </div>
         </section>
+          
+        <div className="max-w-2xl mx-auto mt-8">
+          <h3 className="text-xl font-bold mb-4 text-center">User Flow Steps</h3>
+          <div className="space-y-4">
+            {userFlowSteps.map((step, index) => (
+              <div 
+                key={index}
+                className="p-4 bg-white rounded-lg shadow-sm border-2 border-black hover:shadow-[4px_4px_0px_0px_rgba(255,192,0,1)] transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px]"
+              >
+                <p className="text-gray-700">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">COMPARE WITH</h2>
@@ -157,22 +173,6 @@ const Summary = () => {
                 </button>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="space-y-8">
-          <h2 className="text-2xl font-bold text-center">Export Options</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            {exportPlatforms.map((platform) => (
-              <button
-                key={platform.name}
-                onClick={() => handleCopy(platform.name)}
-                className="retro-button flex items-center justify-center gap-2"
-              >
-                <platform.icon className="w-5 h-5" />
-                {platform.name}
-              </button>
-            ))}
           </div>
         </section>
       </div>
