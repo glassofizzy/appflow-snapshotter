@@ -62,27 +62,29 @@ const Summary = () => {
 
         <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Walkthrough Recording</h2>
-          <Carousel className="w-full max-w-4xl mx-auto">
-            <CarouselContent>
-              <CarouselItem>
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Screen Recording</p>
-                </div>
-              </CarouselItem>
-              <CarouselItem>
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Screenshot 1</p>
-                </div>
-              </CarouselItem>
-              <CarouselItem>
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Screenshot 2</p>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          <div className="relative">
+            <Carousel className="w-full max-w-4xl mx-auto">
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                    <p className="text-gray-600">Screen Recording</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                    <p className="text-gray-600">Screenshot 1</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                    <p className="text-gray-600">Screenshot 2</p>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 h-24 w-24" />
+              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 h-24 w-24" />
+            </Carousel>
+          </div>
         </section>
 
         <section className="space-y-8">
