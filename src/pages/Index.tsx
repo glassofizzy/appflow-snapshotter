@@ -71,7 +71,7 @@ const Index = () => {
             className="retro-button flex items-center gap-2"
           >
             <Play className="w-5 h-5" />
-            Start Walkthrough
+            Get app screenshots
           </button>
         </div>
       </div>
