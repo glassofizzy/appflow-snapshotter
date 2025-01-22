@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Camera, Video } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface Difference {
   id: string;
@@ -10,6 +11,10 @@ interface Difference {
   oldContent: string;
   newContent: string;
   accepted: boolean;
+  evidence?: {
+    screenshot?: string;
+    recording?: string;
+  };
 }
 
 const Compare = () => {
@@ -21,7 +26,11 @@ const Compare = () => {
       type: 'text',
       oldContent: 'User will see Side by side view of the old and new comparison',
       newContent: 'User will see an image with an interactive slider in the middle that would show the older image on the left side and new image of the right side',
-      accepted: false
+      accepted: false,
+      evidence: {
+        screenshot: '/lovable-uploads/089d8b09-41de-4fd8-bc0a-0e22eae51160.png',
+        recording: '/lovable-uploads/11d1b54d-c55f-4925-a60d-2882a54dc43e.png'
+      }
     },
     {
       id: '2',
@@ -63,86 +72,122 @@ const Compare = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto space-y-16">
-        <div className="text-center space-y-4">
-          <h1 className="text-5xl font-bold">Document Comparison</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Review and approve changes between your documentation and real-time captures
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="grid grid-cols-2 min-h-screen">
+        {/* Original Document Side */}
+        <div className="border-r border-gray-200 p-8 space-y-8">
+          <h2 className="text-3xl font-bold text-center">Original Document</h2>
+          <div className="space-y-6">
+            {differences.map((diff) => (
+              <div key={`original-${diff.id}`} className="bg-white rounded-lg p-6 shadow-sm">
+                {diff.type === 'text' ? (
+                  <p className="text-gray-700">{diff.oldContent}</p>
+                ) : (
+                  <img 
+                    src={diff.oldContent} 
+                    alt="Original version" 
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="space-y-8">
-          {differences.map((diff) => (
-            <div key={diff.id} className="bg-white rounded-lg border-2 border-black p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <h3 className="font-bold text-lg">Original Version</h3>
-                  {diff.type === 'text' ? (
-                    <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                      <p className="text-gray-700">{diff.oldContent}</p>
-                    </div>
-                  ) : (
-                    <img 
-                      src={diff.oldContent} 
-                      alt="Original version" 
-                      className="w-full h-auto object-contain rounded-lg border border-gray-200"
-                    />
+        {/* Suggested Changes Side */}
+        <div className="p-8 space-y-8">
+          <h2 className="text-3xl font-bold text-center">Suggested Changes</h2>
+          <div className="space-y-6">
+            {differences.map((diff) => (
+              <div key={`suggested-${diff.id}`} className="bg-white rounded-lg p-6 shadow-sm space-y-4">
+                {diff.type === 'text' ? (
+                  <p className="text-gray-700">{diff.newContent}</p>
+                ) : (
+                  <img 
+                    src={diff.newContent} 
+                    alt="Updated version" 
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                )}
+                
+                <div className="flex items-center gap-4">
+                  {!diff.accepted && (
+                    <Button 
+                      onClick={() => handleAcceptChange(diff.id)}
+                      className="retro-button"
+                    >
+                      Accept this change
+                    </Button>
                   )}
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-bold text-lg">Updated Version</h3>
-                  {diff.type === 'text' ? (
-                    <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                      <p className="text-gray-700">{diff.newContent}</p>
+                  
+                  {diff.evidence && (
+                    <div className="flex gap-2">
+                      {diff.evidence.screenshot && (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" size="icon">
+                              <Camera className="h-4 w-4" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-80">
+                            <img 
+                              src={diff.evidence.screenshot} 
+                              alt="Screenshot evidence" 
+                              className="w-full h-auto rounded-lg"
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      )}
+                      
+                      {diff.evidence.recording && (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" size="icon">
+                              <Video className="h-4 w-4" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-80">
+                            <img 
+                              src={diff.evidence.recording} 
+                              alt="Recording evidence" 
+                              className="w-full h-auto rounded-lg"
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      )}
                     </div>
-                  ) : (
-                    <img 
-                      src={diff.newContent} 
-                      alt="Updated version" 
-                      className="w-full h-auto object-contain rounded-lg border border-gray-200"
-                    />
                   )}
                 </div>
               </div>
-              {!diff.accepted && (
-                <Button 
-                  onClick={() => handleAcceptChange(diff.id)}
-                  className="retro-button"
-                >
-                  Accept this change
-                </Button>
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="flex justify-center">
-          <Button 
-            onClick={handleAcceptAll}
-            className="retro-button"
-          >
-            Accept all changes
-          </Button>
-        </div>
-
-        <div className="max-w-2xl mx-auto space-y-4">
-          <h2 className="text-2xl font-bold text-center">Ask Questions</h2>
-          <div className="space-y-4">
-            <Textarea
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask a question about the changes..."
-              className="retro-input min-h-[100px]"
-            />
+          <div className="flex justify-center pt-8">
             <Button 
-              onClick={handleQuestionSubmit}
-              className="retro-button w-full flex items-center justify-center gap-2"
+              onClick={handleAcceptAll}
+              className="retro-button"
             >
-              <MessageCircle className="w-5 h-5" />
-              Submit Question
+              Accept all changes
             </Button>
           </div>
+        </div>
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <div className="max-w-2xl mx-auto space-y-4">
+          <Textarea
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="Ask a question about the changes..."
+            className="retro-input min-h-[100px]"
+          />
+          <Button 
+            onClick={handleQuestionSubmit}
+            className="retro-button w-full flex items-center justify-center gap-2"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Submit Question
+          </Button>
         </div>
       </div>
     </div>
