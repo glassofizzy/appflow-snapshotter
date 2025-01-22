@@ -26,7 +26,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         accent: {
           DEFAULT: "#ffc000",
-          hover: "#e6ac00",
+          hover: "#ffc000", // Changed from #e6ac00 to #ffc000 to maintain yellow on hover
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
