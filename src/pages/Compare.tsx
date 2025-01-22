@@ -26,8 +26,8 @@ const Compare = () => {
     {
       id: '2',
       type: 'image',
-      oldContent: '/placeholder.svg',
-      newContent: '/placeholder.svg',
+      oldContent: '/lovable-uploads/089d8b09-41de-4fd8-bc0a-0e22eae51160.png',
+      newContent: '/lovable-uploads/11d1b54d-c55f-4925-a60d-2882a54dc43e.png',
       accepted: false
     }
   ]);
@@ -86,7 +86,7 @@ const Compare = () => {
                     <img 
                       src={diff.oldContent} 
                       alt="Original version" 
-                      className="w-full h-48 object-cover rounded-lg border border-gray-200"
+                      className="w-full h-auto object-contain rounded-lg border border-gray-200"
                     />
                   )}
                 </div>
@@ -100,7 +100,7 @@ const Compare = () => {
                     <img 
                       src={diff.newContent} 
                       alt="Updated version" 
-                      className="w-full h-48 object-cover rounded-lg border border-gray-200"
+                      className="w-full h-auto object-contain rounded-lg border border-gray-200"
                     />
                   )}
                 </div>
