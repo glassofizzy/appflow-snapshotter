@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Camera, Video } from "lucide-react";
+import { MessageCircle, Camera, Video, Check } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface Difference {
@@ -43,21 +43,33 @@ const Compare = () => {
 
   const handleAcceptChange = (id: string) => {
     setDifferences(prev => 
-      prev.map(diff => 
-        diff.id === id ? { ...diff, accepted: true } : diff
-      )
+      prev.map(diff => {
+        if (diff.id === id) {
+          // Update the oldContent to match newContent when accepting a change
+          return { 
+            ...diff, 
+            accepted: true,
+            oldContent: diff.newContent 
+          };
+        }
+        return diff;
+      })
     );
     toast({
       title: "Change Accepted",
-      description: "The selected change has been approved.",
+      description: "The selected change has been approved and applied to the original document.",
     });
   };
 
   const handleAcceptAll = () => {
-    setDifferences(prev => prev.map(diff => ({ ...diff, accepted: true })));
+    setDifferences(prev => prev.map(diff => ({
+      ...diff,
+      accepted: true,
+      oldContent: diff.newContent
+    })));
     toast({
       title: "All Changes Accepted",
-      description: "All changes have been approved.",
+      description: "All changes have been approved and applied to the original document.",
     });
   };
 
@@ -100,21 +112,28 @@ const Compare = () => {
           <div className="space-y-6">
             {differences.map((diff) => (
               <div key={`suggested-${diff.id}`} className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-                {diff.type === 'text' ? (
-                  <p className="text-gray-700">{diff.newContent}</p>
-                ) : (
-                  <img 
-                    src={diff.newContent} 
-                    alt="Updated version" 
-                    className="w-full h-auto object-contain rounded-lg"
-                  />
-                )}
+                <div className="flex justify-between items-start">
+                  {diff.type === 'text' ? (
+                    <p className="text-gray-700">{diff.newContent}</p>
+                  ) : (
+                    <img 
+                      src={diff.newContent} 
+                      alt="Updated version" 
+                      className="w-full h-auto object-contain rounded-lg"
+                    />
+                  )}
+                  {diff.accepted && (
+                    <span className="ml-2 flex-shrink-0">
+                      <Check className="h-6 w-6 text-green-500" />
+                    </span>
+                  )}
+                </div>
                 
                 <div className="flex items-center gap-4">
                   {!diff.accepted && (
                     <Button 
                       onClick={() => handleAcceptChange(diff.id)}
-                      className="retro-button"
+                      className="bg-accent hover:bg-accent-hover text-black"
                     >
                       Accept this change
                     </Button>
@@ -165,7 +184,7 @@ const Compare = () => {
           <div className="flex justify-center pt-8">
             <Button 
               onClick={handleAcceptAll}
-              className="retro-button"
+              className="bg-accent hover:bg-accent-hover text-black"
             >
               Accept all changes
             </Button>
@@ -179,11 +198,11 @@ const Compare = () => {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a question about the changes..."
-            className="retro-input min-h-[100px]"
+            className="min-h-[100px]"
           />
           <Button 
             onClick={handleQuestionSubmit}
-            className="retro-button w-full flex items-center justify-center gap-2"
+            className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-black"
           >
             <MessageCircle className="w-5 h-5" />
             Submit Question
