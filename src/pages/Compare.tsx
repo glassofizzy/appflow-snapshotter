@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { OriginalDocument } from "@/components/compare/OriginalDocument";
 import { SuggestedChanges } from "@/components/compare/SuggestedChanges";
-import { QuestionInput } from "@/components/compare/QuestionInput";
 
 interface Difference {
   id: string;
@@ -18,7 +17,6 @@ interface Difference {
 
 const Compare = () => {
   const { toast } = useToast();
-  const [question, setQuestion] = useState('');
   const [differences, setDifferences] = useState<Difference[]>([
     {
       id: '1',
@@ -71,16 +69,6 @@ const Compare = () => {
     });
   };
 
-  const handleQuestionSubmit = () => {
-    if (question.trim()) {
-      toast({
-        title: "Question Submitted",
-        description: "Your question has been sent for analysis.",
-      });
-      setQuestion('');
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="grid grid-cols-2 min-h-screen">
@@ -91,11 +79,6 @@ const Compare = () => {
           onAcceptAll={handleAcceptAll}
         />
       </div>
-      <QuestionInput 
-        question={question}
-        setQuestion={setQuestion}
-        onSubmit={handleQuestionSubmit}
-      />
     </div>
   );
 };

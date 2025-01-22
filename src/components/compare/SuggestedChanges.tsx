@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, MessageCircle, File } from "lucide-react";
 import { EvidenceButtons } from "./EvidenceButtons";
 
 interface Difference {
@@ -57,7 +57,17 @@ export const SuggestedChanges = ({
                 </button>
               )}
               
-              {diff.evidence && <EvidenceButtons evidence={diff.evidence} />}
+              <button className="retro-button">
+                <MessageCircle className="w-5 h-5" />
+                Clarify
+              </button>
+              
+              {diff.evidence && (
+                <button className="retro-button">
+                  <File className="w-5 h-5" />
+                  Evidence
+                </button>
+              )}
             </div>
           </div>
         ))}
