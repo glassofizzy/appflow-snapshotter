@@ -1,5 +1,6 @@
 import { Check, MessageCircle, File } from "lucide-react";
 import { EvidenceButtons } from "./EvidenceButtons";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface Difference {
   id: string;
@@ -53,20 +54,36 @@ export const SuggestedChanges = ({
                   onClick={() => onAcceptChange(diff.id)}
                   className="retro-button"
                 >
-                  Accept this change
+                  Accept
                 </button>
               )}
               
-              <button className="retro-button">
-                <MessageCircle className="w-5 h-5" />
-                Clarify
-              </button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="retro-button">
+                      <MessageCircle className="w-5 h-5" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Clarify</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               
               {diff.evidence && (
-                <button className="retro-button">
-                  <File className="w-5 h-5" />
-                  Evidence
-                </button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button className="retro-button">
+                        <File className="w-5 h-5" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>See evidence</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
             </div>
           </div>
