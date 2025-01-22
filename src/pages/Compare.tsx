@@ -19,8 +19,8 @@ const Compare = () => {
     {
       id: '1',
       type: 'text',
-      oldContent: 'The Lobbying Code of Conduct, which became operational on 1 July 2008...',
-      newContent: 'Ministers shall observe the revised Lobbying Code of Conduct, which came into operation on 20 September 2013...',
+      oldContent: 'User will see Side by side view of the old and new comparison',
+      newContent: 'User will see an image with an interactive slider in the middle that would show the older image on the left side and new image of the right side',
       accepted: false
     },
     {
