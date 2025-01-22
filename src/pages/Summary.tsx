@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Link } from 'react-router-dom';
 
 const Summary = () => {
   const { toast } = useToast();
@@ -175,6 +176,14 @@ const Summary = () => {
             </div>
           </div>
         </section>
+
+        <div className="flex justify-center">
+          <Link to="/compare">
+            <button className="retro-button">
+              Compare with Current Implementation
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
