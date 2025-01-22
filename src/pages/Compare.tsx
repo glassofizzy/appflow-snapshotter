@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Camera, Video, Check } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { OriginalDocument } from "@/components/compare/OriginalDocument";
+import { SuggestedChanges } from "@/components/compare/SuggestedChanges";
+import { QuestionInput } from "@/components/compare/QuestionInput";
 
 interface Difference {
   id: string;
@@ -45,7 +44,6 @@ const Compare = () => {
     setDifferences(prev => 
       prev.map(diff => {
         if (diff.id === id) {
-          // Update the oldContent to match newContent when accepting a change
           return { 
             ...diff, 
             accepted: true,
@@ -86,129 +84,18 @@ const Compare = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="grid grid-cols-2 min-h-screen">
-        {/* Original Document Side */}
-        <div className="border-r border-gray-200 p-8">
-          <h2 className="text-3xl font-bold text-center mb-8">Original Document</h2>
-          <div className="space-y-6">
-            {differences.map((diff) => (
-              <div key={`original-${diff.id}`} className="retro-card">
-                {diff.type === 'text' ? (
-                  <p className="text-gray-700">{diff.oldContent}</p>
-                ) : (
-                  <img 
-                    src={diff.oldContent} 
-                    alt="Original version" 
-                    className="w-full h-auto object-contain rounded-lg"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Suggested Changes Side */}
-        <div className="p-8">
-          <h2 className="text-3xl font-bold text-center mb-8">Suggested Changes</h2>
-          <div className="space-y-6">
-            {differences.map((diff) => (
-              <div key={`suggested-${diff.id}`} className="retro-card space-y-4">
-                <div className="flex justify-between items-start">
-                  {diff.type === 'text' ? (
-                    <p className="text-gray-700">{diff.newContent}</p>
-                  ) : (
-                    <img 
-                      src={diff.newContent} 
-                      alt="Updated version" 
-                      className="w-full h-auto object-contain rounded-lg"
-                    />
-                  )}
-                  {diff.accepted && (
-                    <span className="ml-2 flex-shrink-0">
-                      <Check className="h-6 w-6 text-green-500" />
-                    </span>
-                  )}
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  {!diff.accepted && (
-                    <button 
-                      onClick={() => handleAcceptChange(diff.id)}
-                      className="retro-button"
-                    >
-                      Accept this change
-                    </button>
-                  )}
-                  
-                  {diff.evidence && (
-                    <div className="flex gap-2">
-                      {diff.evidence.screenshot && (
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <button className="retro-button">
-                              <Camera className="h-4 w-4" />
-                            </button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-80">
-                            <img 
-                              src={diff.evidence.screenshot} 
-                              alt="Screenshot evidence" 
-                              className="w-full h-auto rounded-lg"
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      )}
-                      
-                      {diff.evidence.recording && (
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <button className="retro-button">
-                              <Video className="h-4 w-4" />
-                            </button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-80">
-                            <img 
-                              src={diff.evidence.recording} 
-                              alt="Recording evidence" 
-                              className="w-full h-auto rounded-lg"
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-center pt-8">
-            <button 
-              onClick={handleAcceptAll}
-              className="retro-button"
-            >
-              Accept all changes
-            </button>
-          </div>
-        </div>
+        <OriginalDocument differences={differences} />
+        <SuggestedChanges 
+          differences={differences}
+          onAcceptChange={handleAcceptChange}
+          onAcceptAll={handleAcceptAll}
+        />
       </div>
-
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-        <div className="max-w-2xl mx-auto space-y-4">
-          <Textarea
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask a question about the changes..."
-            className="retro-input min-h-[100px]"
-          />
-          <button 
-            onClick={handleQuestionSubmit}
-            className="retro-button w-full flex items-center justify-center gap-2"
-          >
-            <MessageCircle className="w-5 h-5" />
-            Submit Question
-          </button>
-        </div>
-      </div>
+      <QuestionInput 
+        question={question}
+        setQuestion={setQuestion}
+        onSubmit={handleQuestionSubmit}
+      />
     </div>
   );
 };
