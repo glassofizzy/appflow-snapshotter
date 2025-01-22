@@ -87,11 +87,11 @@ const Compare = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="grid grid-cols-2 min-h-screen">
         {/* Original Document Side */}
-        <div className="border-r border-gray-200 p-8 space-y-8">
-          <h2 className="text-3xl font-bold text-center">Original Document</h2>
+        <div className="border-r border-gray-200 p-8">
+          <h2 className="text-3xl font-bold text-center mb-8">Original Document</h2>
           <div className="space-y-6">
             {differences.map((diff) => (
-              <div key={`original-${diff.id}`} className="bg-white rounded-lg p-6 shadow-sm">
+              <div key={`original-${diff.id}`} className="retro-card">
                 {diff.type === 'text' ? (
                   <p className="text-gray-700">{diff.oldContent}</p>
                 ) : (
@@ -107,11 +107,11 @@ const Compare = () => {
         </div>
 
         {/* Suggested Changes Side */}
-        <div className="p-8 space-y-8">
-          <h2 className="text-3xl font-bold text-center">Suggested Changes</h2>
+        <div className="p-8">
+          <h2 className="text-3xl font-bold text-center mb-8">Suggested Changes</h2>
           <div className="space-y-6">
             {differences.map((diff) => (
-              <div key={`suggested-${diff.id}`} className="bg-white rounded-lg p-6 shadow-sm space-y-4">
+              <div key={`suggested-${diff.id}`} className="retro-card space-y-4">
                 <div className="flex justify-between items-start">
                   {diff.type === 'text' ? (
                     <p className="text-gray-700">{diff.newContent}</p>
@@ -131,12 +131,12 @@ const Compare = () => {
                 
                 <div className="flex items-center gap-4">
                   {!diff.accepted && (
-                    <Button 
+                    <button 
                       onClick={() => handleAcceptChange(diff.id)}
-                      className="bg-accent hover:bg-accent-hover text-black"
+                      className="retro-button"
                     >
                       Accept this change
-                    </Button>
+                    </button>
                   )}
                   
                   {diff.evidence && (
@@ -144,9 +144,9 @@ const Compare = () => {
                       {diff.evidence.screenshot && (
                         <Popover>
                           <PopoverTrigger asChild>
-                            <Button variant="outline" size="icon">
+                            <button className="retro-button">
                               <Camera className="h-4 w-4" />
-                            </Button>
+                            </button>
                           </PopoverTrigger>
                           <PopoverContent className="w-80">
                             <img 
@@ -161,9 +161,9 @@ const Compare = () => {
                       {diff.evidence.recording && (
                         <Popover>
                           <PopoverTrigger asChild>
-                            <Button variant="outline" size="icon">
+                            <button className="retro-button">
                               <Video className="h-4 w-4" />
-                            </Button>
+                            </button>
                           </PopoverTrigger>
                           <PopoverContent className="w-80">
                             <img 
@@ -182,12 +182,12 @@ const Compare = () => {
           </div>
 
           <div className="flex justify-center pt-8">
-            <Button 
+            <button 
               onClick={handleAcceptAll}
-              className="bg-accent hover:bg-accent-hover text-black"
+              className="retro-button"
             >
               Accept all changes
-            </Button>
+            </button>
           </div>
         </div>
       </div>
@@ -198,15 +198,15 @@ const Compare = () => {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a question about the changes..."
-            className="min-h-[100px]"
+            className="retro-input min-h-[100px]"
           />
-          <Button 
+          <button 
             onClick={handleQuestionSubmit}
-            className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-black"
+            className="retro-button w-full flex items-center justify-center gap-2"
           >
             <MessageCircle className="w-5 h-5" />
             Submit Question
-          </Button>
+          </button>
         </div>
       </div>
     </div>
