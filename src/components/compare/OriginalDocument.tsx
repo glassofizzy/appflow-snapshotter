@@ -19,19 +19,13 @@ export const OriginalDocument = ({ differences }: OriginalDocumentProps) => {
     <div className="border-r border-gray-200 p-8">
       <h2 className="text-3xl font-bold text-center mb-8">Original Document</h2>
       <div className="space-y-6">
-        {differences.map((diff) => (
-          <div key={`original-${diff.id}`} className="retro-card">
-            {diff.type === 'text' ? (
-              <p className="text-gray-700">{diff.oldContent}</p>
-            ) : (
-              <img 
-                src={diff.oldContent} 
-                alt="Original version" 
-                className="w-full h-auto object-contain rounded-lg"
-              />
-            )}
-          </div>
-        ))}
+        <div className="retro-card flex justify-center items-center">
+          <img 
+            src="/lovable-uploads/7d96ec91-4dc0-4a13-89a8-e9e73156ee33.png"
+            alt="Standard plan pricing"
+            className="w-full max-w-md h-auto object-contain rounded-lg shadow-lg"
+          />
+        </div>
       </div>
     </div>
   );
