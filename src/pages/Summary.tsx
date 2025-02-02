@@ -19,6 +19,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Link } from 'react-router-dom';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Summary = () => {
   const { toast } = useToast();
@@ -38,12 +39,12 @@ const Summary = () => {
   ];
 
   const userFlowSteps = [
-    'Landing on the product page for "Pokémon Super Electric Breaker Booster Box SV8 (JP)"',
-    'Viewing product images',
-    'Reading product description',
-    'Checking price and payment options',
-    'Adding the product to the cart',
-    'Viewing "You may also like" section',
+    'Landing on the Viki profile page for user "@thinkgreenhair"',
+    'Viewing user watchlist and collections',
+    'Checking profile information and join date',
+    'Viewing followed shows and recommendations',
+    'Accessing profile settings and preferences',
+    'Navigating through different language versions of the profile',
   ];
 
   return (
@@ -57,47 +58,42 @@ const Summary = () => {
         </div>
 
         <section className="space-y-8">
-          <h2 className="text-2xl font-bold text-center">Selected Options</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
-              <h3 className="text-xl font-bold mb-2">App Details</h3>
-              <p className="text-gray-600">App Store ID: 123456789</p>
-            </Card>
-            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
-              <h3 className="text-xl font-bold mb-2">Context</h3>
-              <p className="text-gray-600">Device: iPhone 14</p>
-              <p className="text-gray-600">Language: English</p>
-            </Card>
-            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
-              <h3 className="text-xl font-bold mb-2">Workflow</h3>
-              <p className="text-gray-600">Sign up for free trial</p>
-            </Card>
-            <Card className="retro-card hover:translate-y-[-4px] transition-all duration-200">
-              <h3 className="text-xl font-bold mb-2">Authentication</h3>
-              <p className="text-gray-600">Username: ******</p>
-            </Card>
-          </div>
-        </section>
-
-        <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Walkthrough Recording</h2>
           <div className="relative">
             <Carousel className="w-full max-w-4xl mx-auto">
               <CarouselContent>
                 <CarouselItem>
-                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-                    <p className="text-gray-600">Screen Recording</p>
-                  </div>
+                  <AspectRatio ratio={16/9}>
+                    <div className="w-full h-full bg-white border-2 border-black rounded-lg overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
+                      <img 
+                        src="/lovable-uploads/36412367-5715-49e3-afe8-83632cb01dca.png"
+                        alt="Edit Profile Screen"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </AspectRatio>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-                    <p className="text-gray-600">Screenshot 1</p>
-                  </div>
+                  <AspectRatio ratio={16/9}>
+                    <div className="w-full h-full bg-white border-2 border-black rounded-lg overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
+                      <img 
+                        src="/lovable-uploads/5ba1f6f2-29b6-4dd1-83f3-af507f8df29d.png"
+                        alt="Profile Overview English"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </AspectRatio>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="aspect-video bg-white border-2 border-black rounded-lg flex items-center justify-center hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-                    <p className="text-gray-600">Screenshot 2</p>
-                  </div>
+                  <AspectRatio ratio={16/9}>
+                    <div className="w-full h-full bg-white border-2 border-black rounded-lg overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
+                      <img 
+                        src="/lovable-uploads/a28cf632-ef27-469d-9d3e-4b8fbab1f60e.png"
+                        alt="Profile Overview Chinese"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </AspectRatio>
                 </CarouselItem>
               </CarouselContent>
               <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 h-24 w-24" />
