@@ -32,8 +32,8 @@ const Compare = () => {
     {
       id: '2',
       type: 'image',
-      oldContent: '/lovable-uploads/089d8b09-41de-4fd8-bc0a-0e22eae51160.png',
-      newContent: '/lovable-uploads/11d1b54d-c55f-4925-a60d-2882a54dc43e.png',
+      oldContent: '/lovable-uploads/7d96ec91-4dc0-4a13-89a8-e9e73156ee33.png',
+      newContent: '/lovable-uploads/7de04892-1e51-4d4e-84ca-dc789da14371.png',
       accepted: false
     }
   ]);
