@@ -24,9 +24,17 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        accent: {
-          DEFAULT: "#ffc000",
-          hover: "#ffc000", // Changed from #e6ac00 to #ffc000 to maintain yellow on hover
+        cohere: {
+          'dark-green': '#263D3D',
+          'soft-green': '#4A7B6F',
+          'light-beige': '#F5F5F2',
+          'off-white': '#EDEDEB',
+          'light-gray': '#DADADA',
+          'dark-gray': '#3C3C3C',
+          'medium-gray': '#6B6B6B',
+          'muted-orange': '#F28D35',
+          'bright-coral': '#FF6F52',
+          'soft-purple': '#C8A2C8',
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -43,6 +51,10 @@ export default {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
