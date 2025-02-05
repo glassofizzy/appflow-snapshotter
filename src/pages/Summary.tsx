@@ -9,15 +9,6 @@ import {
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Link } from 'react-router-dom';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
@@ -131,47 +122,6 @@ const Summary = () => {
             ))}
           </div>
         </div>
-
-        <section className="space-y-8">
-          <h2 className="text-2xl font-bold text-center">COMPARE WITH</h2>
-          <p className="text-center text-gray-600">
-            Compare your latest documentation with the current implementation to view differences/outdated documentation
-          </p>
-          <div className="max-w-2xl mx-auto space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="docType">Type of documentation</Label>
-              <Select>
-                <SelectTrigger className="retro-select">
-                  <SelectValue placeholder="Select documentation type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="product-requirements">Product Requirements</SelectItem>
-                  <SelectItem value="figma-prototype">Figma Prototype</SelectItem>
-                  <SelectItem value="support-page">Support page</SelectItem>
-                  <SelectItem value="user-manual">User Manual</SelectItem>
-                  <SelectItem value="company-onboarding">Company Onboarding</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="docUrl">Documentation URL</Label>
-              <div className="flex gap-4">
-                <Input 
-                  id="docUrl" 
-                  type="url" 
-                  placeholder="Enter URL to documentation"
-                  className="retro-input flex-1"
-                />
-                <button
-                  className="retro-button whitespace-nowrap"
-                  onClick={() => console.log('Compare clicked')}
-                >
-                  Compare Now
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <div className="flex justify-center">
           <Link to="/doc-comparison">
