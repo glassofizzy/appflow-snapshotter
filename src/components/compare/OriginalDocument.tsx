@@ -21,8 +21,8 @@ export const OriginalDocument = ({ differences }: OriginalDocumentProps) => {
       <div className="space-y-6">
         <div className="retro-card flex justify-center items-center">
           <img 
-            src="/lovable-uploads/1df18433-b7e1-42c0-8ec8-f15713ed4b69.png"
-            alt="PRD Document"
+            src="/lovable-uploads/2560d972-fbc1-4dc3-8b95-0e84ffb591d3.png"
+            alt="Original Profile"
             className="w-full max-w-4xl h-auto object-contain rounded-lg shadow-lg"
           />
         </div>

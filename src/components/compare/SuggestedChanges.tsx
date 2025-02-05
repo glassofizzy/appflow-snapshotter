@@ -35,6 +35,14 @@ export const SuggestedChanges = ({
     <div className="p-8">
       <h2 className="text-3xl font-bold text-center mb-8">Suggested Changes</h2>
       <div className="space-y-6">
+        <div className="retro-card flex justify-center items-center">
+          <img 
+            src="/lovable-uploads/33ea1ca3-8cdd-4cd7-98d0-92d9c82c7ecc.png"
+            alt="Updated Profile"
+            className="w-full max-w-4xl h-auto object-contain rounded-lg shadow-lg"
+          />
+        </div>
+
         {differences.map((diff) => (
           <div key={`suggested-${diff.id}`} className="retro-card space-y-4">
             <div className="flex justify-between items-start">
