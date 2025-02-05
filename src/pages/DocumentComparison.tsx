@@ -19,22 +19,64 @@ const DocumentComparison = () => {
   const [docUrl, setDocUrl] = useState('');
   const [selectedFlow, setSelectedFlow] = useState('');
   const [customFlow, setCustomFlow] = useState('');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [inputMethod, setInputMethod] = useState<'url' | 'upload'>('url');
   const { toast } = useToast();
 
   const handleNext = () => {
-    if (step === 1 && !docUrl) {
-      toast({
-        title: "Missing Information",
-        description: "Please provide a documentation URL to continue",
-        variant: "destructive",
-      });
-      return;
+    if (step === 1) {
+      if (inputMethod === 'url' && !docUrl) {
+        toast({
+          title: "Missing Information",
+          description: "Please provide a documentation URL to continue",
+          variant: "destructive",
+        });
+        return;
+      }
+      if (inputMethod === 'upload' && !uploadedFile) {
+        toast({
+          title: "Missing Information",
+          description: "Please upload a document to continue",
+          variant: "destructive",
+        });
+        return;
+      }
     }
     setStep(prev => prev + 1);
   };
 
   const handlePrevious = () => {
     setStep(prev => prev - 1);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Check file type
+      const allowedTypes = [
+        'application/pdf',
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'video/mp4',
+        'video/quicktime'
+      ];
+      
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: "Invalid File Type",
+          description: "Please upload a PDF, image (JPG, PNG, GIF), or video (MP4, MOV) file",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      setUploadedFile(file);
+      toast({
+        title: "File Uploaded",
+        description: `Successfully uploaded ${file.name}`,
+      });
+    }
   };
 
   return (
@@ -66,22 +108,67 @@ const DocumentComparison = () => {
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="docUrl">Documentation URL</Label>
+              <div className="space-y-4">
+                <Label>How would you like to provide your documentation?</Label>
                 <div className="flex gap-4">
-                  <Input
-                    id="docUrl"
-                    type="url"
-                    placeholder="Enter URL to documentation"
-                    className="flex-1 bg-white border-2 border-cohere-light-gray"
-                    value={docUrl}
-                    onChange={(e) => setDocUrl(e.target.value)}
-                  />
+                  <Button
+                    type="button"
+                    variant={inputMethod === 'url' ? 'default' : 'outline'}
+                    onClick={() => setInputMethod('url')}
+                    className="flex-1"
+                  >
+                    Enter URL
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={inputMethod === 'upload' ? 'default' : 'outline'}
+                    onClick={() => setInputMethod('upload')}
+                    className="flex-1"
+                  >
+                    Upload File
+                  </Button>
                 </div>
-                <p className="text-sm text-cohere-medium-gray">
-                  Ensure the document is public or provide read access to robin@carboncopies.ai
-                </p>
               </div>
+
+              {inputMethod === 'url' && (
+                <div className="space-y-2">
+                  <Label htmlFor="docUrl">Documentation URL</Label>
+                  <div className="flex gap-4">
+                    <Input
+                      id="docUrl"
+                      type="url"
+                      placeholder="Enter URL to documentation"
+                      className="flex-1 bg-white border-2 border-cohere-light-gray"
+                      value={docUrl}
+                      onChange={(e) => setDocUrl(e.target.value)}
+                    />
+                  </div>
+                  <p className="text-sm text-cohere-medium-gray">
+                    Ensure the document is public or provide read access to robin@carboncopies.ai
+                  </p>
+                </div>
+              )}
+
+              {inputMethod === 'upload' && (
+                <div className="space-y-2">
+                  <Label htmlFor="fileUpload">Upload Documentation</Label>
+                  <Input
+                    id="fileUpload"
+                    type="file"
+                    accept=".pdf,image/*,video/mp4,video/quicktime"
+                    onChange={handleFileChange}
+                    className="flex-1 bg-white border-2 border-cohere-light-gray"
+                  />
+                  {uploadedFile && (
+                    <p className="text-sm text-cohere-medium-gray">
+                      Selected file: {uploadedFile.name}
+                    </p>
+                  )}
+                  <p className="text-sm text-cohere-medium-gray">
+                    Supported formats: PDF, Images (JPG, PNG, GIF), Videos (MP4, MOV)
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end">
@@ -101,7 +188,19 @@ const DocumentComparison = () => {
             <div className="bg-white p-8 rounded-lg border-2 border-cohere-light-gray">
               <h3 className="text-xl font-bold text-cohere-dark-green mb-4">Document Preview</h3>
               <div className="aspect-video bg-cohere-light-gray rounded-lg flex items-center justify-center">
-                <p className="text-cohere-medium-gray">Preview will be shown here</p>
+                {uploadedFile ? (
+                  uploadedFile.type.startsWith('image/') ? (
+                    <img
+                      src={URL.createObjectURL(uploadedFile)}
+                      alt="Uploaded document"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  ) : (
+                    <p className="text-cohere-medium-gray">Preview not available for this file type</p>
+                  )
+                ) : (
+                  <p className="text-cohere-medium-gray">Preview will be shown here</p>
+                )}
               </div>
             </div>
 
