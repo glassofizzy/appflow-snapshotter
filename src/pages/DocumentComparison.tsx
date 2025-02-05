@@ -296,7 +296,7 @@ const DocumentComparison = () => {
         )}
 
         {step === 3 && (
-          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg border-2 border-cohere-light-gray">
+          <div className="w-full">
             <AIConfigForm
               webUrl={webUrl}
               setWebUrl={setWebUrl}
