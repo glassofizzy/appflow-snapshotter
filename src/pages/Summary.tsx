@@ -174,7 +174,7 @@ const Summary = () => {
         </section>
 
         <div className="flex justify-center">
-          <Link to="/compare">
+          <Link to="/doc-comparison">
             <button className="retro-button">
               Compare with Current Implementation
             </button>
