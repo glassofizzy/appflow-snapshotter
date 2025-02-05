@@ -59,7 +59,7 @@ const Landing = () => {
               </p>
             </div>
             <Link
-              to="/app"
+              to="/doc-comparison"
               className="inline-block bg-cohere-dark-green text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors w-full text-center"
             >
               Analyze my docs
