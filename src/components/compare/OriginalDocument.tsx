@@ -21,9 +21,9 @@ export const OriginalDocument = ({ differences }: OriginalDocumentProps) => {
       <div className="space-y-6">
         <div className="retro-card flex justify-center items-center">
           <img 
-            src="/lovable-uploads/7d96ec91-4dc0-4a13-89a8-e9e73156ee33.png"
-            alt="Standard plan pricing"
-            className="w-full max-w-md h-auto object-contain rounded-lg shadow-lg"
+            src="/lovable-uploads/1df18433-b7e1-42c0-8ec8-f15713ed4b69.png"
+            alt="PRD Document"
+            className="w-full max-w-4xl h-auto object-contain rounded-lg shadow-lg"
           />
         </div>
       </div>
