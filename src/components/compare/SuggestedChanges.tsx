@@ -1,6 +1,12 @@
-import { Check, MessageCircle, File } from "lucide-react";
+import { Check, MessageCircle, FilePlus, ChevronDown } from "lucide-react";
 import { EvidenceButtons } from "./EvidenceButtons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Difference {
   id: string;
@@ -48,54 +54,72 @@ export const SuggestedChanges = ({
               )}
             </div>
             
-            <div className="flex items-center gap-4">
-              {!diff.accepted && (
-                <button 
-                  onClick={() => onAcceptChange(diff.id)}
-                  className="retro-button"
-                >
-                  Accept
-                </button>
-              )}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                {!diff.accepted && (
+                  <button 
+                    onClick={() => onAcceptChange(diff.id)}
+                    className="retro-button"
+                  >
+                    Accept
+                  </button>
+                )}
+              </div>
               
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button className="retro-button">
-                      <MessageCircle className="w-5 h-5" />
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Clarify</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              
-              {diff.evidence && (
+              <div className="flex items-center gap-2">
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button className="retro-button">
-                        <File className="w-5 h-5" />
+                        <MessageCircle className="w-5 h-5" />
+                        <span className="sr-only">Comment on original doc</span>
                       </button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>See evidence</p>
+                      <p>Comment on original doc</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-              )}
+
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button className="retro-button">
+                        <FilePlus className="w-5 h-5" />
+                        <span className="sr-only">Add to new doc</span>
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Add to new doc</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex justify-center pt-8">
-        <button 
-          onClick={onAcceptAll}
-          className="retro-button"
-        >
-          Accept all changes
+      <div className="flex justify-center gap-4 pt-8">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="retro-button inline-flex items-center gap-2">
+              Accept all changes
+              <ChevronDown className="h-4 w-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onSelect={onAcceptAll}>
+              Draft new doc
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Comment on original doc
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <button className="retro-button">
+          Compare again
         </button>
       </div>
     </div>
