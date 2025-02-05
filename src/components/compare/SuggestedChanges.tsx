@@ -35,19 +35,55 @@ export const SuggestedChanges = ({
     <div className="p-8">
       <h2 className="text-3xl font-bold text-center mb-8">Suggested Changes</h2>
       <div className="space-y-6">
-        <div className="retro-card flex justify-center items-center">
-          <img 
-            src="/lovable-uploads/33ea1ca3-8cdd-4cd7-98d0-92d9c82c7ecc.png"
-            alt="Updated Profile"
-            className="w-full max-w-4xl h-auto object-contain rounded-lg shadow-lg"
-          />
+        <div className="retro-card">
+          <div className="flex justify-center items-center mb-4">
+            <img 
+              src="/lovable-uploads/acd989a5-8888-4919-8e43-2076ce8f4dcb.png"
+              alt="Updated Profile"
+              className="w-full max-w-4xl h-auto object-contain rounded-lg shadow-lg"
+            />
+          </div>
+          <div className="flex justify-end gap-2">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="retro-button">
+                    <MessageCircle className="w-5 h-5" />
+                    <span className="sr-only">Comment on original doc</span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Comment on original doc</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="retro-button">
+                    <FilePlus className="w-5 h-5" />
+                    <span className="sr-only">Add to new doc</span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Add to new doc</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
 
         {differences.map((diff) => (
           <div key={`suggested-${diff.id}`} className="retro-card space-y-4">
             <div className="flex justify-between items-start">
               {diff.type === 'text' ? (
-                <p className="text-gray-700">{diff.newContent}</p>
+                <p className="text-gray-700">
+                  {diff.id === '1' 
+                    ? "Design styling decision: The profile module is entirely in dark mode. Moving the design to a clean, minimalist look"
+                    : diff.newContent
+                  }
+                </p>
               ) : (
                 <img 
                   src={diff.newContent} 
