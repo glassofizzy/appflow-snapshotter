@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,8 +12,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
+import AIConfigForm from '@/components/AIConfigForm';
 
 const DocumentComparison = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [step, setStep] = useState(1);
   const [docType, setDocType] = useState('');
   const [docUrl, setDocUrl] = useState('');
@@ -21,7 +24,16 @@ const DocumentComparison = () => {
   const [customFlow, setCustomFlow] = useState('');
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [inputMethod, setInputMethod] = useState<'url' | 'upload'>('url');
-  const { toast } = useToast();
+
+  // New states for AI config
+  const [webUrl, setWebUrl] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [location, setLocation] = useState('');
+  const [persona, setPersona] = useState('');
+  const [attention, setAttention] = useState('');
+  const [ignore, setIgnore] = useState('');
 
   const handleNext = () => {
     if (step === 1) {
@@ -41,6 +53,32 @@ const DocumentComparison = () => {
         });
         return;
       }
+    } else if (step === 2 && !selectedFlow) {
+      toast({
+        title: "Missing Information",
+        description: "Please select a user flow to continue",
+        variant: "destructive",
+      });
+      return;
+    } else if (step === 3) {
+      if (!webUrl) {
+        toast({
+          title: "Missing Information",
+          description: "Please provide a Web URL or App ID to continue",
+          variant: "destructive",
+        });
+        return;
+      }
+      if (!persona) {
+        toast({
+          title: "Missing Information",
+          description: "Please provide a persona description to continue",
+          variant: "destructive",
+        });
+        return;
+      }
+      navigate('/compare');
+      return;
     }
     setStep(prev => prev + 1);
   };
@@ -253,6 +291,45 @@ const DocumentComparison = () => {
                   Next
                 </Button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg border-2 border-cohere-light-gray">
+            <AIConfigForm
+              webUrl={webUrl}
+              setWebUrl={setWebUrl}
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              language={language}
+              setLanguage={setLanguage}
+              location={location}
+              setLocation={setLocation}
+              persona={persona}
+              setPersona={setPersona}
+              attention={attention}
+              setAttention={setAttention}
+              ignore={ignore}
+              setIgnore={setIgnore}
+            />
+            
+            <div className="flex justify-between mt-8">
+              <Button 
+                variant="outline" 
+                onClick={handlePrevious}
+                className="border-2 border-cohere-light-gray hover:bg-cohere-light-beige"
+              >
+                Previous
+              </Button>
+              <Button 
+                onClick={handleNext}
+                className="bg-cohere-dark-green text-white hover:bg-opacity-90"
+              >
+                Compare now!
+              </Button>
             </div>
           </div>
         )}
