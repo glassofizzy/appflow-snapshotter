@@ -41,7 +41,7 @@ const AIConfigForm = ({
 }: AIConfigFormProps) => {
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
+      <div className="space-y-2 text-left">
         <Label htmlFor="webUrl">Web URL or App ID</Label>
         <Input
           id="webUrl"
@@ -53,11 +53,11 @@ const AIConfigForm = ({
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-cohere-dark-green">
+        <h3 className="text-lg font-semibold text-cohere-dark-green text-left">
           Give our giggle AI agents more information to access your web/app:
         </h3>
         
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="username">Login username (optional)</Label>
           <Input
             id="username"
@@ -68,7 +68,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="password">Login password (optional)</Label>
           <Input
             id="password"
@@ -80,7 +80,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="language">Language (optional)</Label>
           <Input
             id="language"
@@ -91,7 +91,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="location">City/country</Label>
           <Input
             id="location"
@@ -102,7 +102,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="persona">Persona description</Label>
           <Input
             id="persona"
@@ -113,7 +113,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="attention">Pay attention to (optional)</Label>
           <Input
             id="attention"
@@ -124,7 +124,7 @@ const AIConfigForm = ({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-left">
           <Label htmlFor="ignore">Please ignore (optional)</Label>
           <Input
             id="ignore"
