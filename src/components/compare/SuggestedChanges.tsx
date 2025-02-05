@@ -101,6 +101,10 @@ export const SuggestedChanges = ({
       </div>
 
       <div className="flex justify-center gap-4 pt-8">
+        <button className="bg-cohere-off-white text-cohere-dark-gray border-2 border-cohere-dark-gray rounded-lg py-2 px-6 font-bold hover:bg-cohere-light-gray transition-colors duration-200">
+          Compare again
+        </button>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="retro-button inline-flex items-center gap-2">
@@ -117,10 +121,6 @@ export const SuggestedChanges = ({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        <button className="retro-button">
-          Compare again
-        </button>
       </div>
     </div>
   );
