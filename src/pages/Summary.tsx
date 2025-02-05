@@ -6,11 +6,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Copy } from "lucide-react";
+import { Copy, Download, ChevronDown } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Summary = () => {
   const { toast } = useToast();
@@ -22,12 +27,12 @@ const Summary = () => {
     });
   };
 
-  const exportPlatforms = [
-    { name: 'Canva', icon: Copy },
-    { name: 'Figma', icon: Copy },
-    { name: 'Webflow', icon: Copy },
-    { name: 'Capcut', icon: Copy },
-  ];
+  const handleDownload = () => {
+    toast({
+      title: "Downloading Screenshots",
+      description: "Your screenshots are being prepared for download...",
+    });
+  };
 
   const userFlowSteps = [
     'Landing on the Viki profile page for user "@thinkgreenhair"',
@@ -95,17 +100,34 @@ const Summary = () => {
 
         <section className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Export Options</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            {exportPlatforms.map((platform) => (
-              <button
-                key={platform.name}
-                onClick={() => handleCopy(platform.name)}
-                className="retro-button flex items-center justify-center gap-2"
-              >
-                <platform.icon className="w-5 h-5" />
-                {platform.name}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+            <button
+              onClick={handleDownload}
+              className="retro-button flex items-center justify-center gap-2 w-full md:w-auto"
+            >
+              <Download className="w-5 h-5" />
+              Download
+            </button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger className="retro-button flex items-center justify-center gap-2 w-full md:w-auto">
+                <Copy className="w-5 h-5" />
+                Copy to
+                <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48">
+                {['Canva', 'Figma', 'Webflow', 'Capcut'].map((platform) => (
+                  <DropdownMenuItem
+                    key={platform}
+                    onClick={() => handleCopy(platform)}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <Copy className="w-4 h-4" />
+                    <span>{platform}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </section>
           
