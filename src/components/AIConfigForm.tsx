@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -58,7 +59,7 @@ const AIConfigForm = ({
       <div className="space-y-6 overflow-y-auto max-h-[600px] pr-4">
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="webUrl">Web URL or App ID*</Label>
+            <Label htmlFor="webUrl" className="text-left block">Web URL or App ID*</Label>
             <Input
               id="webUrl"
               value={webUrl}
@@ -70,7 +71,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="username">Login username (optional)</Label>
+            <Label htmlFor="username" className="text-left block">Login username (optional)</Label>
             <Input
               id="username"
               value={username}
@@ -81,7 +82,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Login password (optional)</Label>
+            <Label htmlFor="password" className="text-left block">Login password (optional)</Label>
             <Input
               id="password"
               type="password"
@@ -93,7 +94,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="language">Language (optional)</Label>
+            <Label htmlFor="language" className="text-left block">Language (optional)</Label>
             <Input
               id="language"
               value={language}
@@ -104,7 +105,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="location">City/Country (optional)</Label>
+            <Label htmlFor="location" className="text-left block">City/Country (optional)</Label>
             <Input
               id="location"
               value={location}
@@ -115,7 +116,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="persona">Persona description*</Label>
+            <Label htmlFor="persona" className="text-left block">Persona description*</Label>
             <Input
               id="persona"
               value={persona}
@@ -127,7 +128,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="attention">Pay attention to (optional)</Label>
+            <Label htmlFor="attention" className="text-left block">Pay attention to (optional)</Label>
             <Input
               id="attention"
               value={attention}
@@ -138,7 +139,7 @@ const AIConfigForm = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="ignore">Ignore (optional)</Label>
+            <Label htmlFor="ignore" className="text-left block">Ignore (optional)</Label>
             <Input
               id="ignore"
               value={ignore}
