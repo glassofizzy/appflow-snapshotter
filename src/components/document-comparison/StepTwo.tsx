@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,19 +30,11 @@ const StepTwo = ({
       <div className="bg-white p-8 rounded-lg border-2 border-cohere-light-gray">
         <h3 className="text-xl font-bold text-cohere-dark-green mb-4">Document Preview</h3>
         <div className="aspect-video bg-cohere-light-gray rounded-lg flex items-center justify-center">
-          {uploadedFile ? (
-            uploadedFile.type.startsWith('image/') ? (
-              <img
-                src={URL.createObjectURL(uploadedFile)}
-                alt="Uploaded document"
-                className="max-w-full max-h-full object-contain"
-              />
-            ) : (
-              <p className="text-cohere-medium-gray">Preview not available for this file type</p>
-            )
-          ) : (
-            <p className="text-cohere-medium-gray">Preview will be shown here</p>
-          )}
+          <img
+            src="/lovable-uploads/387d110e-49d7-436e-b03e-6e30fec6e441.png"
+            alt="Viki Help Center - Sign Up documentation"
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
       </div>
 
